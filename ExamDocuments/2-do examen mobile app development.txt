@@ -1,0 +1,29 @@
+2-do examen mobile app development:
+- Tutorial video kijken van weatherapp
+https://www.youtube.com/watch?v=f2oSRBwN2HY&pp=ygUwamF2YSBhbmRyb2lkIHdlYXRoZXIgYXBwIHdpdGggb3BlbndlYXRoZXJtYXAgYXBp
+- 2-do lijst maken wat ik moet maken en doen voor de daadwerkelijke app
+
+1. Plan van aanpak maken en toevoegen bij Inventarisatie
+	Bevat:
+		- IJkpunten
+		- Datums
+		- wanneer wat gaat doen
+	- tijdens examen schema maken en bijhouden of OG schema is gevolgd, en of geplande 	werkzaamheden zijn gerealiseerd. eventuele afwijkingen noteren
+2. Ontwerp document maken
+	- Wireframes voor ieder scherm van de app
+		- Uitwerken welke schermen app heft
+	- Class diagram
+		- Oude projecten kijken van hoe of wat
+		- uitwerken hoe code ongeveer eruit gaat zien
+		- potentieel overleggen met Wigmans of héél misschien van der Brugge
+
+3. App maken
+
+4. Testplan schrijven
+	- Acceptatie testen maken, voorbeeld in Canvas
+5. Video maken
+	- Alle wensen en Eisen die benoemd zijn doorlopen in jouw app
+- Loginopdracht(?)
+	- Login scherm maken en inleveren, uitleg uit opnames zijn beschikbaar op teams
+- JSONopdracht(?)
+	- PDF uit opdrachtenboek lezen en één opdracht maken en inleveren. Info in Canvas

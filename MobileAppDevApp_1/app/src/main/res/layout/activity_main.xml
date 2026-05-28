@@ -19,8 +19,23 @@
         android:id="@+id/IMG_Dog"
         android:layout_width="175dp"
         android:layout_height="480dp"
-        app:srcCompat="@drawable/f83de282e49e16815226a7ebdbb960ea"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="-124dp" />
+        android:onClick="GoToSite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/f83de282e49e16815226a7ebdbb960ea" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.632" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
