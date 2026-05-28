@@ -1,6 +1,7 @@
 2-do examen mobile app development:
 - Tutorial video kijken van weatherapp
 https://www.youtube.com/watch?v=f2oSRBwN2HY&pp=ygUwamF2YSBhbmRyb2lkIHdlYXRoZXIgYXBwIHdpdGggb3BlbndlYXRoZXJtYXAgYXBp
+
 - 2-do lijst maken wat ik moet maken en doen voor de daadwerkelijke app
 
 1. Plan van aanpak maken en toevoegen bij Inventarisatie
@@ -27,3 +28,150 @@ https://www.youtube.com/watch?v=f2oSRBwN2HY&pp=ygUwamF2YSBhbmRyb2lkIHdlYXRoZXIgY
 	- Login scherm maken en inleveren, uitleg uit opnames zijn beschikbaar op teams
 - JSONopdracht(?)
 	- PDF uit opdrachtenboek lezen en één opdracht maken en inleveren. Info in Canvas
+
+
+<EditText
+    android:id="@+id/etInlognaam"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="12dp"
+    android:ems="10"
+    android:hint="inlognaam"/>
+
+<EditText
+    android:id="@+id/etWachtwoord"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/etInlognaam"
+    android:layout_alignParentStart="true"
+    android:layout_marginStart="13dp"
+    android:layout_marginTop="25dp"
+    android:ems="10"
+    android:hint="wachtwoord"
+    android:password="true"
+    />
+
+<Button
+    android:id="@+id/inloggen"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="23dp"
+    android:layout_marginBottom="100dp"
+    android:text="Inloggen"
+    android:onClick="onClick" />
+
+<Button
+    android:id="@+id/registreren"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="83dp"
+    android:layout_marginBottom="103dp"
+    android:layout_toEndOf="@+id/inloggen"
+    android:onClick="onClick"
+    android:text="Regisreren" />
+
+<Button
+    android:id="@+id/logtable"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="102dp"
+    android:layout_marginBottom="26dp"
+    android:text="Log Gegevens tabel"
+    android:onClick="logGegevensTabel"/>
+
+-------
+
+public void onClick(View view)
+{
+    EditText username = (EditText) findViewById(R.id.etInlognaam);
+    EditText password = (EditText) findViewById(R.id.etWachtwoord);
+    String gebruiker = username.getText().toString();
+    String ww = password.getText().toString();
+
+    SQLiteDatabase gebruikersDB = this.openOrCreateDatabase("gebruikersDB", MODE_PRIVATE, null);
+
+    File dbFile = getDatabasePath("gebruikersDB");
+    if (dbFile.exists()) {
+        Log.i("database", "bestaat");
+        Log.i("Path to database ", dbFile.getPath().toString());
+    } else {
+        Log.i("database",  "bestaat niet");
+    }
+
+    gebruikersDB.execSQL("CREATE TABLE IF NOT EXISTS "
+            + "gegevens "
+            + "(inlognaam VARCHAR, wachtwoord VARCHAR) ;"
+    );
+
+    /*
+    gebruikersDB.execSQL("INSERT INTO gegevens (inlognaam, wachtwoord) VALUES ('Harry', '543')");
+
+    gebruikersDB.execSQL("INSERT INTO "
+            + "gegevens "
+            + "(inlognaam, wachtwoord)"
+            + "VALUES('Henk','23');"
+    );
+
+     */
+
+    switch (view.getId()) {
+        case R.id.registreren:
+            Log.d("test",  "registreren button geklikt");
+            String sql = "INSERT or REPLACE INTO gegevens (inlognaam, wachtwoord) " +
+                    " VALUES ('" + gebruiker + "', '" + ww + "');";
+            gebruikersDB.execSQL(sql);
+            break;
+        case R.id.inloggen:
+            Log.d("test", "inloggen button geklikt");
+            String table = "gegevens";
+            String[] columnsToReturn = { "wachtwoord" };
+            String selection = "inlognaam = ? ";
+            String[] selectionArgs = { gebruiker } ;
+            try {
+                Cursor cursor = gebruikersDB.query(table, columnsToReturn, selection, selectionArgs, null, null, null);
+                cursor.moveToLast();
+                String column1 = cursor.getString(0);
+                if (column1.equals(ww)) {
+                    Log.d(column1, "Inloggen button geklik");
+                    Intent intent = new Intent(this, MainActivity2.class);
+                    startActivity(intent);
+                } else {
+                    Log.d(column1, "inloggen mislukt");
+
+                }
+                cursor.close();
+                break;
+            } catch (android.database.CursorIndexOutOfBoundsException e) {
+                Log.d(gebruiker, " bestaat waarschijnlijk niet ");
+            }
+
+    }
+
+}
+
+public void logGegevensTabel(View view)
+{
+    SQLiteDatabase gebruikersDB = this.openOrCreateDatabase("gebruikersDB", MODE_PRIVATE, null);
+    Cursor c = gebruikersDB.rawQuery("SELECT rowid, * FROM gegevens", null);
+    int Column0 = c.getColumnIndex("rowid");
+    int Column1 = c.getColumnIndex("inlognaam");
+    int Column2 = c.getColumnIndex("wachtwoord");
+    for (int row = 0; row < c.getCount(); row++)
+    {
+        c.moveToPosition(row);
+        String id = c.getString(Column0);
+        String name = c.getString(Column1);
+        String ww = c.getString(Column2);
+        Log.i(Integer.toString(row), "Row"  + Integer.toString(row)  + ":   " + id + "  " + name + "   " + ww);
+
+    }
+
+}
