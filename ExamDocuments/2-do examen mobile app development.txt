@@ -24,10 +24,6 @@ https://www.youtube.com/watch?v=f2oSRBwN2HY&pp=ygUwamF2YSBhbmRyb2lkIHdlYXRoZXIgY
 	- Acceptatie testen maken, voorbeeld in Canvas
 5. Video maken
 	- Alle wensen en Eisen die benoemd zijn doorlopen in jouw app
-- Loginopdracht(?)
-	- Login scherm maken en inleveren, uitleg uit opnames zijn beschikbaar op teams
-- JSONopdracht(?)
-	- PDF uit opdrachtenboek lezen en één opdracht maken en inleveren. Info in Canvas
 
 
 <EditText
